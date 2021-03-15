@@ -3,6 +3,15 @@ const express = require("express");
 const router = express.Router();
 
 
+// getLastWorkout - GET 
+
+// addExercise - PUT
+
+// createWorkout - POST
+
+// getWorkoutsInRange - GET
+
+
 // const router = require("express").Router();
 // const Transaction = require("../models/transaction.js");
 
