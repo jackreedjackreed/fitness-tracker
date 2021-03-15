@@ -1,9 +1,31 @@
 const path = require("path");
 const express = require("express");
+const Workout = require("../models/workout");
 const router = express.Router();
 
 
 // getLastWorkout - GET 
+router.get("/api/workouts", ({ body}, res) => {
+    Workout.find({})
+    // .sort({ date: -1})
+    .then(workouts => {
+        res.json(workouts);
+    })
+    .catch(err => {
+        res.status(400).json(err);
+    });
+})
+
+// router.get("/api/transaction", (req, res) => {
+//   Transaction.find({})
+//     .sort({ date: -1 })
+//     .then(dbTransaction => {
+//       res.json(dbTransaction);
+//     })
+//     .catch(err => {
+//       res.status(400).json(err);
+//     });
+// });
 
 // addExercise - PUT
 
@@ -35,16 +57,6 @@ const router = express.Router();
 //     });
 // });
 
-// router.get("/api/transaction", (req, res) => {
-//   Transaction.find({})
-//     .sort({ date: -1 })
-//     .then(dbTransaction => {
-//       res.json(dbTransaction);
-//     })
-//     .catch(err => {
-//       res.status(400).json(err);
-//     });
-// });
 
 module.exports = router;
 

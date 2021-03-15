@@ -1,6 +1,5 @@
 const mongoose = require(mongoose);
-const { Schema } = require("mongoose");
-
+const Schema = require("mongoose");
 // add day, name, type, weight, sets, reps, duration, distance traveled
 
 
