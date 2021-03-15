@@ -1,5 +1,5 @@
-const mongoose = require(mongoose);
-const Schema = require("mongoose");
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 // add day, name, type, weight, sets, reps, duration, distance traveled
 
 
@@ -21,7 +21,7 @@ const workoutSchema = new Schema({
     ]
 });
 
-const Workout = mongoose.model("Workout", WorkoutSchema);
+const Workout = mongoose.model("Workout", workoutSchema);
 
 module.exports = Workout
 

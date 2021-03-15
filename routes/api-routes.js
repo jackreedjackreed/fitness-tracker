@@ -1,20 +1,51 @@
 const path = require("path");
 const express = require("express");
-const Workout = require("../models/workout");
+const db = require("../models");
 const router = express.Router();
 
 
-// getLastWorkout - GET 
-router.get("/api/workouts", ({ body}, res) => {
-    Workout.find({})
+
+// everything
+router.get("/all", ({ body }, res) => {
+    db.Workout.find({})
     // .sort({ date: -1})
-    .then(workouts => {
-        res.json(workouts);
+    .then(dbWorkout => {
+        res.json(dbWorkout);
+        console.log("retrieved all!")
     })
     .catch(err => {
         res.status(400).json(err);
     });
 })
+
+
+// getLastWorkout - GET 
+router.get("/api/workouts", ({ body }, res) => {
+    Workout.find({})
+    // .sort({ date: -1})
+    .then(dbWorkout => {
+        res.json(dbWorkout);
+    })
+    .catch(err => {
+        res.status(400).json(err);
+    });
+})
+
+
+// app.post("/submit", ({body}, res) => {
+//     const user = new User(body);
+//     user.setFullName();
+//     user.lastUpdatedDate();
+  
+//     User.create(user)
+//       .then(dbUser => {
+//         res.json(dbUser);
+//       })
+//       .catch(err => {
+//         res.json(err);
+//       });
+//   });
+
 
 // router.get("/api/transaction", (req, res) => {
 //   Transaction.find({})
