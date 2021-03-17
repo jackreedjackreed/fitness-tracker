@@ -38,7 +38,7 @@ router.get("/all", ({ body }, res) => {
     });
 })
 
-
+//
 // getLastWorkout - GET 
 router.get("/api/workouts", ({ body }, res) => {
     db.Workout.find({})
