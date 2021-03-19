@@ -41,82 +41,42 @@ router.post("/api/workouts", (req, res) => {
 
 // getWorkoutsInRange - GET
 router.get('/api/workouts/range', (req, res) => {
-    console.log(req.params.id)
-}
-
-
-// router.post("/api/transaction", ({ body }, res) => {
-//   Transaction.create(body)
-//     .then(dbTransaction => {
-//       res.json(dbTransaction);
-//     })
-//     .catch(err => {
-//       res.status(400).json(err);
-//     });
-// });
-
-// everything
-router.get("/all", ({ body }, res) => {
-    Workout.find({})
-    // .sort({ date: -1})
+    Workout.aggregate([
+        {
+            $addFields: {
+                totalDuration: {$sum: "$exercises.duration"},
+                totalWeight: {$sum: "$exercises.duration"}
+            }
+        }
+    ])
+    // limit to last 7
+    .limit(7)
+    // sort descending
+    .sort({_id: -1})
     .then(dbWorkout => {
         res.json(dbWorkout);
-        console.log("retrieved all!")
     })
     .catch(err => {
-        res.status(400).json(err);
+        res.status(400).json(err)
     });
 })
 
-//
 
+// View the combined weight of multiple exercises from the past seven workouts on the `stats` page.
 
+//   * View the total duration of each workout from the past seven workouts on the `stats` page.
 
-// app.post("/submit", ({body}, res) => {
-//     const user = new User(body);
-//     user.setFullName();
-//     user.lastUpdatedDate();
-  
-//     User.create(user)
-//       .then(dbUser => {
-//         res.json(dbUser);
-//       })
-//       .catch(err => {
-//         res.json(err);
-//       });
-//   });
-
-
-// router.get("/api/transaction", (req, res) => {
-//   Transaction.find({})
-//     .sort({ date: -1 })
-//     .then(dbTransaction => {
-//       res.json(dbTransaction);
-//     })
-//     .catch(err => {
-//       res.status(400).json(err);
-//     });
-// });
-
-
-
-
-
-
-// const router = require("express").Router();
-// const Transaction = require("../models/transaction.js");
-
-
-
-// router.post("/api/transaction/bulk", ({ body }, res) => {
-//   Transaction.insertMany(body)
-//     .then(dbTransaction => {
-//       res.json(dbTransaction);
-//     })
-//     .catch(err => {
-//       res.status(400).json(err);
-//     });
-// });
+// db.orders.aggregate(
+//     [
+//       { $match: { status: "A" } },
+//       { $group: { _id: "$cust_id", total: { $sum: "$amount" } } },
+//       { $sort: { total: -1 } },
+//       { $limit: 2 }
+//     ],
+//     {
+//       cursor: { batchSize: 0 }
+//     }
+//   
 
 
 module.exports = router;
