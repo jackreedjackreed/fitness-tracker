@@ -6,7 +6,7 @@
   An application that allows users to create, track, and view their cardio and resistance workouts.
   
   ## Live Application
-  https://lit-beach-66495.herokuapp.com/?id=605aa27f64edae00153c8e3d
+  https://lit-beach-66495.herokuapp.com/
 
   ## License 
 
